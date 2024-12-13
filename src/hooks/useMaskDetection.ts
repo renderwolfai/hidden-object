@@ -52,5 +52,9 @@ export function useMaskDetection(masks: MaskImage[], containerSize: { width: num
     return null;
   };
 
-  return { detectMaskAtPoint };
+  const getMaskImageData = (maskId: number): ImageData | undefined => {
+    return state.maskData.get(maskId);
+  };
+
+  return { detectMaskAtPoint, getMaskImageData };
 }
