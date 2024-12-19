@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Animation } from '@/types/animation';
-import { loadImage, getImageData, getImageBounds } from '@/lib/canvas/image';
+import { loadImage, getImageData, getImageBounds } from '@/lib/canvas';
 import { ImageBounds } from '@/types/canvas';
 
 export function useImageLoader(animations: Animation[]) {

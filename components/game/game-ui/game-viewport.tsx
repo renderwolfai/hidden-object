@@ -2,9 +2,8 @@
 
 import { memo } from 'react';
 import { Game } from '@/types/game';
-import { GameCanvas } from './game-canvas';
-import { GameBackground } from './game-background';
-import { GameAnimations } from './game-animations';
+import { GameCanvas } from '../game-canvas';
+import { GameBackground } from '../game-background';
 import { useObjectAnimations } from '@/hooks/animation';
 import { ClickResult } from '@/types/canvas';
 
@@ -44,12 +43,6 @@ function GameViewportComponent({ game, foundObjects, onObjectFound }: GameViewpo
             foundObjects={foundObjects}
             onObjectFound={handleObjectClick}
           />
-          {animations.length > 0 && (
-            <GameAnimations
-              animations={animations}
-              onAnimationComplete={removeAnimation}
-            />
-          )}
         </div>
       </div>
     </div>

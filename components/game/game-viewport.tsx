@@ -3,8 +3,6 @@
 import { memo } from 'react';
 import { Game } from '@/types/game';
 import { GameCanvas } from './game-canvas';
-import { AnimationLayer } from './animation/animation-layer';
-import { useFoundAnimations } from '@/hooks/animation/use-found-animations';
 import { ClickResult } from '@/types/canvas';
 
 interface GameViewportProps {
@@ -14,8 +12,6 @@ interface GameViewportProps {
 }
 
 function GameViewportComponent({ game, foundObjects, onObjectFound }: GameViewportProps) {
-  const { animations, startAnimation, removeAnimation } = useFoundAnimations();
-
   const handleObjectClick = (result: ClickResult) => {
     const object = game.objects.find(obj => obj.id === result.id);
     if (!object) return;
@@ -28,13 +24,6 @@ function GameViewportComponent({ game, foundObjects, onObjectFound }: GameViewpo
       x: badgeRect.left + (badgeRect.width / 2),
       y: badgeRect.top + (badgeRect.height / 2)
     };
-
-    startAnimation(
-      result.id,
-      object.maskPath,
-      { x: result.position.x, y: result.position.y },
-      endPosition
-    );
 
     onObjectFound(result);
   };
@@ -55,10 +44,6 @@ function GameViewportComponent({ game, foundObjects, onObjectFound }: GameViewpo
             foundObjects={foundObjects}
             onObjectFound={handleObjectClick}
             className="game-layer"
-          />
-          <AnimationLayer
-            animations={animations}
-            onAnimationComplete={removeAnimation}
           />
         </div>
       </div>

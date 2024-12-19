@@ -2,7 +2,7 @@ import { ClickPosition, ClickResult } from '@/types/canvas';
 import { GameObject } from '@/types/game';
 import { getImageBounds } from '../canvas-utils';
 
-export function calculateObjectCenter(
+export function calculateImageObjectCenter(
   maskData: ImageData,
   scale: number,
   canvasRect: DOMRect

@@ -12,15 +12,15 @@ export function useFoundAnimations() {
     startPosition: Position,
     endPosition: Position
   ) => {
-    setAnimations(prev => {
-      const filtered = prev.filter(anim => anim.id !== id);
-      return [...filtered, {
-        id,
-        imagePath,
-        startPosition,
-        endPosition
-      }];
-    });
+    // setAnimations(prev => {
+    //   const filtered = prev.filter(anim => anim.id !== id);
+    //   return [...filtered, {
+    //     id,
+    //     imagePath,
+    //     startPosition,
+    //     endPosition
+    //   }];
+    // });
   }, []);
 
   const removeAnimation = useCallback((id: string) => {

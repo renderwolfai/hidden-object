@@ -27,7 +27,7 @@ export function useGameCanvas(
   }, [canvasRef, masks, foundObjects, renderOverlay, width, height]);
 
   return {
-    canvasSize: { width, height },
+    canvasSize: { width, height, scale: 1 },
     handleClick: detectClick,
   };
 }

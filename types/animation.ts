@@ -8,4 +8,6 @@ export interface Animation {
   imagePath: string;
   startPosition: Position;
   endPosition: Position;
+  startTime: number;
+  duration: number;
 }

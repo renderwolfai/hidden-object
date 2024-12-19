@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useEffect, useRef } from 'react';
-import { loadImage, getImageData, getImageBounds } from '@/lib/canvas/image';
+import { loadImage, getImageData, getImageBounds } from '@/lib/canvas';
 import { cn } from '@/lib/utils';
 
 interface ObjectPreviewProps {
