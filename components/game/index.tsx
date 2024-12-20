@@ -62,6 +62,9 @@ export default function GameClient({ game }: GameClientProps) {
           foundCount={foundObjects.size}
           totalCount={game.objects.length}
           timeRemaining={timeRemaining}
+          timeLimit={game.timeLimit}
+          gameTitle={game.title}
+          gameId={game.id}
         />
       </div>
     </>
