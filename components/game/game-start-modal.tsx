@@ -6,12 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 
 interface GameStartModalProps {
+  gameDescription: string;
   isOpen: boolean;
   onStart: () => void;
   gameTitle: string;
 }
 
-function GameStartModalComponent({ isOpen, onStart, gameTitle }: GameStartModalProps) {
+function GameStartModalComponent({ isOpen, onStart, gameTitle, gameDescription }: GameStartModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={() => onStart()}>
       <DialogContent className="sm:max-w-md">
@@ -20,7 +21,7 @@ function GameStartModalComponent({ isOpen, onStart, gameTitle }: GameStartModalP
         </DialogTitle>
         <div className="text-center space-y-4">
           <p className="text-muted-foreground">
-            Find all the hidden objects before time runs out!
+            {gameDescription}
           </p>
           <Button 
             size="lg" 
