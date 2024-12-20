@@ -11,7 +11,7 @@ function GameTimerComponent({ timeRemaining }: GameTimerProps) {
   const seconds = timeRemaining % 60;
 
   return (
-    <div className="text-2xl font-bold tabular-nums">
+    <div className="text-2xl font-bold tabular-nums font-mono">
       {minutes}:{seconds.toString().padStart(2, '0')}
     </div>
   );

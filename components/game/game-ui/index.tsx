@@ -26,7 +26,7 @@ function GameUIComponent({ game, foundObjects, timeRemaining, onQuit }: GameUIPr
           <div className="text-lg font-medium">
             {foundObjects.size}/{game.objects.length}
           </div>
-          <QuitButton onQuit={onQuit} />
+          {/* <QuitButton onQuit={onQuit} /> */}
         </div>
         <ObjectList objects={game.objects} foundObjects={foundObjects} />
       </div>

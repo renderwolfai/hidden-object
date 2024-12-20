@@ -44,11 +44,12 @@ function GameCompleteComponent({
             {timeRemaining > 0 && ` with ${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, '0')} remaining`}!
           </p>
           
-          <SocialShare 
+          
+          {isWin ? <SocialShare 
             timeElapsed={timeElapsed}
             gameTitle={gameTitle}
             gameId={gameId}
-          />
+          /> : undefined}
 
           <div className="pt-4 border-t">
             <p className="text-sm text-muted-foreground mb-3">
