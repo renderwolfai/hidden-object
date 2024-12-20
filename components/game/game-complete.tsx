@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
 interface GameCompleteProps {
@@ -25,11 +25,9 @@ function GameCompleteComponent({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="text-2xl text-center">
-            {isWin ? '🎉 Congratulations!' : '⏰ Time\'s Up!'}
-          </DialogTitle>
-        </DialogHeader>
+        <DialogTitle className="text-2xl text-center">
+          {isWin ? '🎉 Congratulations!' : '⏰ Time\'s Up!'}
+        </DialogTitle>
         <div className="text-center space-y-4">
           <div className="text-4xl font-bold text-primary">{score}%</div>
           <p className="text-muted-foreground">
@@ -49,4 +47,3 @@ function GameCompleteComponent({
 }
 
 export const GameComplete = memo(GameCompleteComponent);
-export default GameComplete;
