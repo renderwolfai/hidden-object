@@ -22,17 +22,19 @@ function GameCanvasComponent({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { canvasSize, handleClick } = useGameCanvas(canvasRef, game, foundObjects);
 
+  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const result = handleClick(e);
+    if (result) {
+      onObjectFound(result);
+    }
+  };
+
   return (
     <canvas
       ref={canvasRef}
       width={canvasSize.width}
       height={canvasSize.height}
-      onClick={(e) => {
-        const result = handleClick(e);
-        if (result) {
-          onObjectFound(result);
-        }
-      }}
+      onClick={handleCanvasClick}
       className={cn("game-layer", className)}
       style={{
         width: `${canvasSize.width * canvasSize.scale}px`,

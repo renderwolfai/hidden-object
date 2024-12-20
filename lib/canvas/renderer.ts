@@ -6,9 +6,9 @@ import { getImageBounds } from './bounds';
 
 export class CanvasRenderer {
   private ctx: CanvasRenderingContext2D;
-  private scale: number;
   private width: number;
   private height: number;
+  private scale: number;
 
   constructor(ctx: CanvasRenderingContext2D, width: number, height: number, scale = 1) {
     this.ctx = ctx;
@@ -22,15 +22,13 @@ export class CanvasRenderer {
   }
 
   renderMask(maskData: ImageData, isFound: boolean = false) {
-    const bounds = getImageBounds(maskData);
-    
     // Create path for non-transparent pixels
     const path = new Path2D();
     for (let y = 0; y < maskData.height; y++) {
       for (let x = 0; x < maskData.width; x++) {
         const index = (y * maskData.width + x) * 4 + 3;
         if (maskData.data[index] > 0) {
-          path.rect(x * this.scale, y * this.scale, this.scale, this.scale);
+          path.rect(x, y, 1, 1);
         }
       }
     }
@@ -42,28 +40,29 @@ export class CanvasRenderer {
     this.ctx.fill(path);
 
     if (DEBUG) {
-      this.drawDebugOverlay(bounds, isFound ? 'green' : 'red');
+      const bounds = getImageBounds(maskData);
+      this.drawDebugOverlay(bounds);
     }
   }
 
-  private drawDebugOverlay(bounds: ImageBounds, color: string) {
+  private drawDebugOverlay(bounds: ImageBounds) {
     this.ctx.save();
     
     // Draw bounding box
-    this.ctx.strokeStyle = color;
+    this.ctx.strokeStyle = 'red';
     this.ctx.lineWidth = 2;
     this.ctx.strokeRect(
-      bounds.left * this.scale,
-      bounds.top * this.scale,
-      (bounds.right - bounds.left) * this.scale,
-      (bounds.bottom - bounds.top) * this.scale
+      bounds.left,
+      bounds.top,
+      bounds.right - bounds.left,
+      bounds.bottom - bounds.top
     );
 
     // Draw center point
-    const centerX = (bounds.left + (bounds.right - bounds.left) / 2) * this.scale;
-    const centerY = (bounds.top + (bounds.bottom - bounds.top) / 2) * this.scale;
+    const centerX = bounds.left + (bounds.right - bounds.left) / 2;
+    const centerY = bounds.top + (bounds.bottom - bounds.top) / 2;
     
-    this.ctx.fillStyle = color;
+    this.ctx.fillStyle = 'blue';
     this.ctx.beginPath();
     this.ctx.arc(centerX, centerY, 4, 0, Math.PI * 2);
     this.ctx.fill();

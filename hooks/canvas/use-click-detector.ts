@@ -14,8 +14,12 @@ export function useClickDetector(game: Game, options: ClickDetectorOptions) {
     if (!canvas || masks.size === 0) return null;
 
     const rect = canvas.getBoundingClientRect();
-    const imageX = Math.floor((e.clientX - rect.left) / scale);
-    const imageY = Math.floor((e.clientY - rect.top) / scale);
+    const canvasX = e.clientX - rect.left;
+    const canvasY = e.clientY - rect.top;
+    
+    // Convert click coordinates to image space
+    const imageX = Math.floor(canvasX / scale);
+    const imageY = Math.floor(canvasY / scale);
 
     debugPoint(e.clientX, e.clientY, 'red');
 
@@ -25,12 +29,22 @@ export function useClickDetector(game: Game, options: ClickDetectorOptions) {
       const maskData = masks.get(obj.id);
       if (!maskData) continue;
 
+      // Ensure we're within the mask dimensions
+      if (imageX < 0 || imageX >= maskData.width || imageY < 0 || imageY >= maskData.height) {
+        continue;
+      }
+
       const index = (imageY * maskData.width + imageX) * 4 + 3;
       if (index >= 0 && index < maskData.data.length && maskData.data[index] > 0) {
+        // Calculate object center in screen coordinates
+        const bounds = getImageBounds(maskData);
+        const centerX = (bounds.left + (bounds.right - bounds.left) / 2) * scale + rect.left;
+        const centerY = (bounds.top + (bounds.bottom - bounds.top) / 2) * scale + rect.top;
+
         return {
           id: obj.id,
           position: { x: e.clientX, y: e.clientY },
-          objectCenter: { x: e.clientX, y: e.clientY }
+          objectCenter: { x: centerX, y: centerY }
         };
       }
     }

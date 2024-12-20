@@ -14,7 +14,7 @@ export function useGameCanvas(
 ) {
   const { width, height, scale } = useCanvasSize(game);
   const masks = useMaskLoader(game);
-  const renderOverlay = useOverlayRenderer({ scale: 1, width, height });
+  const renderOverlay = useOverlayRenderer({ width, height, scale });
   const detectClick = useClickDetector(game, { scale, masks, foundObjects });
 
   // Draw found object overlays
@@ -27,7 +27,7 @@ export function useGameCanvas(
   }, [canvasRef, masks, foundObjects, renderOverlay, width, height]);
 
   return {
-    canvasSize: { width, height, scale: 1 },
+    canvasSize: { width, height, scale },
     handleClick: detectClick,
   };
 }

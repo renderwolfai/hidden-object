@@ -15,17 +15,11 @@ export function useCanvasSize(game: Game): CanvasSize {
       if (!container) return;
 
       const containerRect = container.getBoundingClientRect();
-      const imgAspectRatio = backgroundImg.width / backgroundImg.height;
-      const containerAspectRatio = containerRect.width / containerRect.height;
-
-      let scale;
-      if (containerAspectRatio > imgAspectRatio) {
-        // Container is wider than image - fit to height
-        scale = containerRect.height / backgroundImg.height;
-      } else {
-        // Container is taller than image - fit to width
-        scale = containerRect.width / backgroundImg.width;
-      }
+      
+      // Calculate scale to fit the image in the container while maintaining aspect ratio
+      const scaleX = containerRect.width / backgroundImg.width;
+      const scaleY = containerRect.height / backgroundImg.height;
+      const scale = Math.min(scaleX, scaleY);
 
       setSize({
         width: backgroundImg.width,

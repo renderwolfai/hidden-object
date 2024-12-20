@@ -1,18 +1,17 @@
 'use client';
 
 import { Game } from '@/types/game';
-import { useRouter } from 'next/navigation';
 import { memo } from 'react';
 import { Clock, Gauge } from 'lucide-react';
+import Link from 'next/link';
 
 interface GameCardProps {
   game: Game;
-  onClick: () => void;
 }
 
-const GameCard = memo(function GameCard({ game, onClick }: GameCardProps) {
+const GameCard = memo(function GameCard({ game }: GameCardProps) {
   return (
-    <div className="game-card" onClick={onClick}>
+    <Link href={`/game/${game.id}`} className="game-card">
       <div className="game-preview">
         <img
           src={game.backgroundPath}
@@ -34,7 +33,7 @@ const GameCard = memo(function GameCard({ game, onClick }: GameCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 });
 
@@ -43,8 +42,6 @@ interface GameLobbyProps {
 }
 
 export default function GameLobby({ games }: GameLobbyProps) {
-  const router = useRouter();
-
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="text-center mb-12">
@@ -58,7 +55,6 @@ export default function GameLobby({ games }: GameLobbyProps) {
           <GameCard 
             key={game.id} 
             game={game}
-            onClick={() => router.push(`/game/${game.id}`)}
           />
         ))}
       </div>
