@@ -6,7 +6,7 @@ export const zeitgeistGame: Game = {
   description: 'Find iconic moments and trends that defined the start of 2024',
   backgroundPath: '/static/2024-zeitgeist/final-image-all-2024.png',
   difficulty: 'medium',
-  timeLimit: 300, // 5 minutes
+  timeLimit: 90, // 5 minutes
   objects: [
     {
       id: 'stanley-cup',
