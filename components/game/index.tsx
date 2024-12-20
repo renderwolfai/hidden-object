@@ -7,7 +7,6 @@ import { GameViewport } from './game-viewport';
 import { GameStartModal } from './game-start-modal';
 import { useGameState } from '@/hooks/game';
 import { useGameStart } from '@/hooks/game/use-game-start';
-import { useRouter } from 'next/navigation';
 import { ClickResult } from '@/types/canvas';
 import { cn } from '@/lib/utils';
 
@@ -16,7 +15,6 @@ interface GameClientProps {
 }
 
 export default function GameClient({ game }: GameClientProps) {
-  const router = useRouter();
   const { showStart, isBlurred, handleStart } = useGameStart();
   const {
     showComplete,
@@ -25,11 +23,7 @@ export default function GameClient({ game }: GameClientProps) {
     handleObjectFound,
     handleGameComplete,
     startTimer,
-  } = useGameState(game, () => router.push('/'));
-
-  const handleQuit = () => {
-    router.push('/');
-  };
+  } = useGameState(game);
 
   const handleObjectClick = (result: ClickResult) => {
     handleObjectFound(result.id);
@@ -55,7 +49,7 @@ export default function GameClient({ game }: GameClientProps) {
           game={game}
           foundObjects={foundObjects}
           timeRemaining={timeRemaining}
-          onQuit={handleQuit}
+          onQuit={() => window.location.href = '/'}
         />
         <GameViewport
           game={game}
@@ -64,7 +58,7 @@ export default function GameClient({ game }: GameClientProps) {
         />
         <GameComplete
           open={showComplete}
-          onClose={handleGameComplete}
+          onClose={() => handleGameComplete()}
           foundCount={foundObjects.size}
           totalCount={game.objects.length}
           timeRemaining={timeRemaining}

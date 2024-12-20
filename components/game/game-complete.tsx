@@ -2,7 +2,8 @@
 
 import { memo } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/logo';
+import Link from 'next/link';
 
 interface GameCompleteProps {
   open: boolean;
@@ -23,7 +24,7 @@ function GameCompleteComponent({
   const score = Math.round((foundCount / totalCount) * 100);
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={() => onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogTitle className="text-2xl text-center">
           {isWin ? '🎉 Congratulations!' : '⏰ Time\'s Up!'}
@@ -34,12 +35,22 @@ function GameCompleteComponent({
             You found {foundCount} out of {totalCount} objects
             {timeRemaining > 0 && ` with ${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, '0')} remaining`}!
           </p>
-          <Button
-            className="w-full"
-            onClick={onClose}
-          >
-            Return to Lobby
-          </Button>
+          <div className="pt-4 border-t">
+            <p className="text-sm text-muted-foreground mb-3">
+              Powered by
+            </p>
+            <Link 
+              href="https://renderwolf.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block hover:opacity-80 transition-opacity"
+            >
+              <Logo />
+            </Link>
+            <p className="text-sm text-muted-foreground mt-2">
+              Check out more AI-powered games at RenderWolf!
+            </p>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

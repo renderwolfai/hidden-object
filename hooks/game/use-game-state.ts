@@ -5,7 +5,7 @@ import { Game } from '@/types/game';
 import { useGameTimer } from './use-game-timer';
 import { useFoundObjects } from './use-found-objects';
 
-export function useGameState(game: Game, onGameComplete: () => void) {
+export function useGameState(game: Game) {
   const [showComplete, setShowComplete] = useState(false);
   
   const handleTimeUp = useCallback(() => {
@@ -19,15 +19,20 @@ export function useGameState(game: Game, onGameComplete: () => void) {
   const { timeRemaining, startTimer, pauseTimer } = useGameTimer(game.timeLimit, handleTimeUp);
   const { foundObjects, handleObjectFound } = useFoundObjects(game.objects.length, handleAllFound);
 
-  const handleGameComplete = useCallback(() => {
-    pauseTimer();
-    setShowComplete(false);
-    onGameComplete();
-  }, [onGameComplete, pauseTimer]);
-
-  // Don't auto-start the timer anymore
+  // Stop timer when game is complete
   useEffect(() => {
-    return () => pauseTimer(); // Cleanup only
+    if (showComplete) {
+      pauseTimer();
+    }
+  }, [showComplete, pauseTimer]);
+
+  const handleGameComplete = useCallback(() => {
+    setShowComplete(false);
+  }, []);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => pauseTimer();
   }, [pauseTimer]);
 
   return {
@@ -36,6 +41,6 @@ export function useGameState(game: Game, onGameComplete: () => void) {
     foundObjects,
     handleObjectFound,
     handleGameComplete,
-    startTimer, // Expose startTimer to be called when game starts
+    startTimer,
   };
 }
