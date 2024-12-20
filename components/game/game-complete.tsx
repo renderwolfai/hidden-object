@@ -4,7 +4,6 @@ import { memo } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Logo } from "@/components/logo";
 import { SocialShare } from "./social-share";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 
@@ -31,6 +30,10 @@ function GameCompleteComponent({
 }: GameCompleteProps) {
   const isWin = foundCount === totalCount;
   const score = Math.round((foundCount / totalCount) * 100);
+
+  const handleLogoClick = () => {
+    window.open('https://renderwolf.ai', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <Dialog open={open} onOpenChange={isWin ? onClose : undefined}>
@@ -62,18 +65,16 @@ function GameCompleteComponent({
             </Button>
           )}
 
-          <Link
-            href="https://renderwolf.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block hover:opacity-60 transition-opacity pt-4 border-t"
+          <div 
+            className="inline-block hover:opacity-60 transition-opacity pt-4 border-t cursor-pointer"
+            onClick={handleLogoClick}
           >
             <p className="text-sm text-muted-foreground mb-3">Powered by</p>
             <Logo />
             <p className="text-sm text-muted-foreground mt-2">
               Make game art using Generative AI!
             </p>
-          </Link>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

@@ -41,6 +41,7 @@ export default function GameClient({ game }: GameClientProps) {
         isOpen={showStart}
         onStart={handleGameStart}
         gameTitle={game.title}
+        gameDescription={game.description}
       />
       <div className={cn(
         "game-layout",
