@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Game } from '@/types/game';
 import { CanvasSize } from '@/types/canvas';
-import { loadImage } from '@/lib/canvas-utils';
+import { loadImage } from '@/lib';
 
 export function useCanvasSize(game: Game): CanvasSize {
   const [size, setSize] = useState<CanvasSize>({ width: 0, height: 0, scale: 1 });

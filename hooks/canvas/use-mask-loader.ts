@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Game } from '@/types/game';
-import { loadImage } from '@/lib/canvas-utils';
+import { loadImage } from '@/lib';
 
 export function useMaskLoader(game: Game) {
   const [masks, setMasks] = useState<Map<string, ImageData>>(new Map());

@@ -6,6 +6,7 @@ export function getImageBounds(imageData: ImageData): ImageBounds {
   let top = imageData.height;
   let bottom = 0;
 
+  // Scan for non-transparent pixels
   for (let y = 0; y < imageData.height; y++) {
     for (let x = 0; x < imageData.width; x++) {
       const alpha = imageData.data[(y * imageData.width + x) * 4 + 3];
@@ -23,12 +24,5 @@ export function getImageBounds(imageData: ImageData): ImageBounds {
     right: right === 0 ? imageData.width : right,
     top: top === imageData.height ? 0 : top,
     bottom: bottom === 0 ? imageData.height : bottom
-  };
-}
-
-export function calculateObjectCenter(bounds: ImageBounds) {
-  return {
-    x: bounds.left + (bounds.right - bounds.left) / 2,
-    y: bounds.top + (bounds.bottom - bounds.top) / 2
   };
 }

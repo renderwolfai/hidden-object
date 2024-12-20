@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, RefObject, useCallback } from 'react';
+import { useEffect, RefObject } from 'react';
 import { Game } from '@/types/game';
 import { useCanvasSize } from './canvas/use-canvas-size';
 import { useMaskLoader } from './canvas/use-mask-loader';

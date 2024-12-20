@@ -3,8 +3,8 @@
 import { useCallback } from 'react';
 import { Game } from '@/types/game';
 import { ClickDetectorOptions, ClickResult } from '@/types/canvas';
-import { getImageBounds } from '@/lib/canvas-utils';
-import { debugPoint } from '@/lib/debug-utils';
+import { getImageBounds } from '@/lib';
+import { debugPoint } from '@/lib/debug';
 
 export function useClickDetector(game: Game, options: ClickDetectorOptions) {
   const { scale, masks, foundObjects } = options;
