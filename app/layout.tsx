@@ -12,6 +12,11 @@ const josefinSans = Josefin_Sans({
 export const metadata: Metadata = {
   title: 'Hidden Object Game - RenderWolf',
   description: 'A hidden object game powered by RenderWolf',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
