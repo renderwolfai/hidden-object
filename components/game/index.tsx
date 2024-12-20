@@ -22,6 +22,7 @@ export default function GameClient({ game }: GameClientProps) {
     foundObjects,
     handleObjectFound,
     handleGameComplete,
+    handleGameRetry,
     startTimer,
   } = useGameState(game);
 
@@ -40,7 +41,6 @@ export default function GameClient({ game }: GameClientProps) {
         isOpen={showStart}
         onStart={handleGameStart}
         gameTitle={game.title}
-        gameDescription={game.description}
       />
       <div className={cn(
         "game-layout",
@@ -60,6 +60,7 @@ export default function GameClient({ game }: GameClientProps) {
         <GameComplete
           open={showComplete}
           onClose={() => handleGameComplete()}
+          onRetry={handleGameRetry}
           foundCount={foundObjects.size}
           totalCount={game.objects.length}
           timeRemaining={timeRemaining}

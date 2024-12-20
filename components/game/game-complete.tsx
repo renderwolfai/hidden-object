@@ -5,10 +5,13 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Logo } from "@/components/logo";
 import { SocialShare } from "./social-share";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
 
 interface GameCompleteProps {
   open: boolean;
   onClose: () => void;
+  onRetry: () => void;
   foundCount: number;
   totalCount: number;
   timeRemaining: number;
@@ -19,6 +22,7 @@ interface GameCompleteProps {
 function GameCompleteComponent({
   open,
   onClose,
+  onRetry,
   foundCount,
   totalCount,
   timeRemaining,
@@ -29,7 +33,7 @@ function GameCompleteComponent({
   const score = Math.round((foundCount / totalCount) * 100);
 
   return (
-    <Dialog open={open} onOpenChange={() => onClose()}>
+    <Dialog open={open} onOpenChange={isWin ? onClose : undefined}>
       <DialogContent className="sm:max-w-md">
         <DialogTitle className="text-2xl text-center">
           {isWin ? "🎉 Congratulations!" : "⏰ Time's Up!"}
@@ -47,7 +51,17 @@ function GameCompleteComponent({
 
           {isWin ? (
             <SocialShare shareText={gameShareText} gameId={gameId} />
-          ) : undefined}
+          ) : (
+            <Button 
+              size="lg" 
+              className="w-full"
+              onClick={onRetry}
+            >
+              <RotateCcw className="mr-2 h-5 w-5" />
+              Try Again
+            </Button>
+          )}
+
           <Link
             href="https://renderwolf.ai"
             target="_blank"

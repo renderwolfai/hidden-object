@@ -14,6 +14,11 @@ export function useGameTimer(initialTime: number, onTimeUp: () => void) {
     setIsRunning(false);
   }, []);
 
+  const resetTimer = useCallback(() => {
+    setTimeRemaining(initialTime);
+    setIsRunning(false);
+  }, [initialTime]);
+
   useEffect(() => {
     if (!isRunning || timeRemaining <= 0) return;
 
@@ -35,5 +40,6 @@ export function useGameTimer(initialTime: number, onTimeUp: () => void) {
     timeRemaining,
     startTimer,
     pauseTimer,
+    resetTimer,
   };
 }

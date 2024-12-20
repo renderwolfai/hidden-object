@@ -16,8 +16,13 @@ export function useFoundObjects(totalObjects: number, onAllFound: () => void) {
     });
   }, [totalObjects, onAllFound]);
 
+  const resetFoundObjects = useCallback(() => {
+    setFoundObjects(new Set());
+  }, []);
+
   return {
     foundObjects,
     handleObjectFound,
+    resetFoundObjects,
   };
 }

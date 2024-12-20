@@ -16,8 +16,8 @@ export function useGameState(game: Game) {
     setShowComplete(true);
   }, []);
 
-  const { timeRemaining, startTimer, pauseTimer } = useGameTimer(game.timeLimit, handleTimeUp);
-  const { foundObjects, handleObjectFound } = useFoundObjects(game.objects.length, handleAllFound);
+  const { timeRemaining, startTimer, pauseTimer, resetTimer } = useGameTimer(game.timeLimit, handleTimeUp);
+  const { foundObjects, handleObjectFound, resetFoundObjects } = useFoundObjects(game.objects.length, handleAllFound);
 
   // Stop timer when game is complete
   useEffect(() => {
@@ -30,6 +30,13 @@ export function useGameState(game: Game) {
     setShowComplete(false);
   }, []);
 
+  const handleGameRetry = useCallback(() => {
+    resetTimer();
+    resetFoundObjects();
+    setShowComplete(false);
+    startTimer();
+  }, [resetTimer, resetFoundObjects, startTimer]);
+
   // Cleanup timer on unmount
   useEffect(() => {
     return () => pauseTimer();
@@ -41,6 +48,7 @@ export function useGameState(game: Game) {
     foundObjects,
     handleObjectFound,
     handleGameComplete,
+    handleGameRetry,
     startTimer,
   };
 }
