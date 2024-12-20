@@ -3,10 +3,11 @@ import { Game } from '@/types/game';
 export const zeitgeistGame: Game = {
   id: 'zeitgeist-2024',
   title: '2024 Zeitgeist',
-  description: 'Find iconic moments and trends that defined the start of 2024',
+  description: `Find 2024's most viral moments in this image before the timer runs out!`,
   backgroundPath: '/static/2024-zeitgeist/final-image-all-2024.png',
   difficulty: 'medium',
-  timeLimit: 90, // 5 minutes
+  timeLimit: 30,
+  shareText: `Can you find 2024's most viral moments in this hidden object game by @renderwolfai? https://t.co/LNuOTHSgpC`,
   objects: [
     {
       id: 'stanley-cup',
@@ -20,7 +21,7 @@ export const zeitgeistGame: Game = {
     },
     {
       id: 'brat',
-      name: 'Bratislava Moment',
+      name: 'Brat Summer',
       maskPath: '/static/2024-zeitgeist/brat-mask.png'
     },
     {

@@ -12,4 +12,5 @@ export interface Game {
   difficulty: 'easy' | 'medium' | 'hard';
   timeLimit: number;
   objects: GameObject[];
+  shareText?: string;
 }

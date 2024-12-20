@@ -62,8 +62,7 @@ export default function GameClient({ game }: GameClientProps) {
           foundCount={foundObjects.size}
           totalCount={game.objects.length}
           timeRemaining={timeRemaining}
-          timeLimit={game.timeLimit}
-          gameTitle={game.title}
+          gameShareText={game.shareText || `I just beat ${game.title} on Hidden Object by @renderwolfai! Can you?`}
           gameId={game.id}
         />
       </div>

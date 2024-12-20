@@ -1,25 +1,17 @@
 'use client';
 
 import { memo } from 'react';
-import { Twitter } from 'lucide-react';
+import { BsTwitterX } from "react-icons/bs";
 import { Button } from '@/components/ui/button';
-import { createTwitterShareUrl, getBlurredImageUrl } from '@/lib/social';
-import Link from 'next/link';
+import { createTwitterShareUrl } from '@/lib/social';
 
 interface SocialShareProps {
-  timeElapsed: number;
-  gameTitle: string;
+  shareText: string;
   gameId: string;
 }
 
-function SocialShareComponent({ timeElapsed, gameTitle, gameId }: SocialShareProps) {
-  const minutes = Math.floor(timeElapsed / 60);
-  const seconds = timeElapsed % 60;
-  const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  
-  const shareText = `I completed ${gameTitle} in ${timeString}! Can you beat my time?`;
+function SocialShareComponent({ gameId, shareText }: SocialShareProps) {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const blurredImageUrl = getBlurredImageUrl(gameId);
   
   const handleTwitterShare = () => {
     const twitterUrl = createTwitterShareUrl({
@@ -39,8 +31,7 @@ function SocialShareComponent({ timeElapsed, gameTitle, gameId }: SocialSharePro
           className="gap-2"
           onClick={handleTwitterShare}
         >
-          <Twitter className="w-4 h-4" />
-          Share on Twitter
+          Share on <BsTwitterX className="w-4 h-4" />
         </Button>
       </div>
     </div>

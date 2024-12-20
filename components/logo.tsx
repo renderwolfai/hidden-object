@@ -9,7 +9,7 @@ export function Logo() {
       href="https://renderwolf.ai" 
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+      className="flex items-center gap-2 hover:opacity-80 transition-opacity justify-center"
     >
       <Image
         src="/logo.png"
