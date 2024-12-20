@@ -67,6 +67,7 @@ export default function GameClient({ game }: GameClientProps) {
           timeRemaining={timeRemaining}
           gameShareText={game.shareText || `I just beat ${game.title} on Hidden Object by @renderwolfai! Can you?`}
           gameId={game.id}
+          gameTitle={game.title}
         />
       </div>
     </>

@@ -2,14 +2,20 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackLogoClick } from '@/lib/analytics/events/navigation';
 
 export function Logo() {
+  const handleLogoClick = () => {
+    trackLogoClick();
+  };
+
   return (
     <Link 
       href="https://renderwolf.ai" 
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-2 hover:opacity-80 transition-opacity justify-center"
+      onClick={handleLogoClick}
     >
       <Image
         src="/logo.png"

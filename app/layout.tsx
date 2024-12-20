@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Josefin_Sans } from 'next/font/google';
 import { Logo } from '@/components/logo';
+import { AnalyticsProvider } from '@/components/analytics/analytics-provider';
 
 const josefinSans = Josefin_Sans({ 
   subsets: ['latin'],
@@ -21,14 +22,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${josefinSans.className} app-layout`}>
-        <header className="app-header">
-          <div className="container mx-auto px-4 h-full flex items-center">
-            <Logo />
-          </div>
-        </header>
-        <main className="app-content">
-          {children}
-        </main>
+        <AnalyticsProvider>
+          <header className="app-header">
+            <div className="container mx-auto px-4 h-full flex items-center">
+              <Logo />
+            </div>
+          </header>
+          <main className="app-content">
+            {children}
+          </main>
+        </AnalyticsProvider>
       </body>
     </html>
   );

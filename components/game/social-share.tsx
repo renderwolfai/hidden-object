@@ -4,16 +4,24 @@ import { memo } from 'react';
 import { BsTwitterX } from "react-icons/bs";
 import { Button } from '@/components/ui/button';
 import { createTwitterShareUrl } from '@/lib/social';
+import { trackShare } from '@/lib/analytics/events/share';
 
 interface SocialShareProps {
   shareText: string;
   gameId: string;
+  gameTitle: string;
 }
 
-function SocialShareComponent({ gameId, shareText }: SocialShareProps) {
+function SocialShareComponent({ gameId, gameTitle, shareText }: SocialShareProps) {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   
   const handleTwitterShare = () => {
+    trackShare({
+      platform: 'twitter',
+      gameId,
+      title: gameTitle
+    });
+    
     const twitterUrl = createTwitterShareUrl({
       text: shareText,
       url: shareUrl,
@@ -37,5 +45,4 @@ function SocialShareComponent({ gameId, shareText }: SocialShareProps) {
     </div>
   );
 }
-
 export const SocialShare = memo(SocialShareComponent);

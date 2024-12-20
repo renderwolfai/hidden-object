@@ -1,11 +1,12 @@
 "use client";
-
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Logo } from "@/components/logo";
 import { SocialShare } from "./social-share";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
+import { trackGameComplete } from "@/lib/analytics/events/game";
+import { trackLogoClick } from "@/lib/analytics/events/navigation";
 
 interface GameCompleteProps {
   open: boolean;
@@ -15,6 +16,7 @@ interface GameCompleteProps {
   totalCount: number;
   timeRemaining: number;
   gameId: string;
+  gameTitle: string;
   gameShareText: string;
 }
 
@@ -26,12 +28,28 @@ function GameCompleteComponent({
   totalCount,
   timeRemaining,
   gameId,
+  gameTitle,
   gameShareText,
 }: GameCompleteProps) {
   const isWin = foundCount === totalCount;
   const score = Math.round((foundCount / totalCount) * 100);
 
+  // Track game completion
+  useEffect(() => {
+    if (open) {
+      trackGameComplete({
+        gameId,
+        title: gameTitle,
+        isWin,
+        foundCount,
+        totalCount,
+        timeRemaining
+      });
+    }
+  }, [open, gameId, gameTitle, isWin, foundCount, totalCount, timeRemaining]);
+
   const handleLogoClick = () => {
+    trackLogoClick();
     window.open('https://renderwolf.ai', '_blank', 'noopener,noreferrer');
   };
 
@@ -53,7 +71,11 @@ function GameCompleteComponent({
           </p>
 
           {isWin ? (
-            <SocialShare shareText={gameShareText} gameId={gameId} />
+            <SocialShare 
+              shareText={gameShareText} 
+              gameId={gameId}
+              gameTitle={gameTitle}
+            />
           ) : (
             <Button 
               size="lg" 
@@ -80,5 +102,4 @@ function GameCompleteComponent({
     </Dialog>
   );
 }
-
 export const GameComplete = memo(GameCompleteComponent);
