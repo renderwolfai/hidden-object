@@ -7,7 +7,7 @@ export const zeitgeistGame: Game = {
   backgroundPath: '/static/2024-zeitgeist/final-image-all-2024.png',
   difficulty: 'medium',
   timeLimit: 30,
-  shareText: `Can you find 2024's most viral moments in this hidden object game by @renderwolfai? https://t.co/LNuOTHSgpC`,
+  shareText: `Can you find 2024's most viral moments in this hidden object game by @renderwolfai? https://t.co/rXhGbfrODf`,
   objects: [
     {
       id: 'stanley-cup',
