@@ -1,10 +1,12 @@
 import { testGame } from './test-game';
 import { zeitgeistGame } from './zeitgeist-game';
+import { zeitgeist2025Game } from './2025-zeitgeist-game';
 import { Game } from '@/types/game';
 
 export const games: Game[] = [
   testGame,
-  zeitgeistGame
+  zeitgeistGame,
+  zeitgeist2025Game
 ];
 
 export const getGameById = (id: string): Game | undefined => {

@@ -9,7 +9,7 @@ export function useFoundObjects(totalObjects: number, onAllFound: () => void) {
       if (!newFound.has(objectId)) {
         newFound.add(objectId);
         if (newFound.size === totalObjects) {
-          onAllFound();
+          setTimeout(() => onAllFound(), 3000);
         }
       }
       return newFound;

@@ -17,6 +17,7 @@ function ObjectListComponent({ objects, foundObjects }: ObjectListProps) {
 
   return (
     <div className="flex items-center gap-4 overflow-x-auto pb-2">
+      <span className="shrink-0 text-muted-foreground font-medium">You found:</span>
       <Button
         variant="ghost"
         size="icon"
@@ -39,7 +40,7 @@ function ObjectListComponent({ objects, foundObjects }: ObjectListProps) {
             data-object-id={obj.id}
             className={cn(
               "relative flex items-center gap-2 px-3 py-1 rounded-full whitespace-nowrap transition-all duration-200",
-              isFound ? "bg-primary/20 text-primary line-through" : "bg-secondary text-secondary-foreground"
+              isFound ? "bg-primary/20 text-primary" : "bg-secondary text-secondary-foreground"
             )}
           >
             {showPreviews && (
@@ -51,7 +52,7 @@ function ObjectListComponent({ objects, foundObjects }: ObjectListProps) {
                 />
               </div>
             )}
-            <span>{obj.name}</span>
+            {isFound && <span>{obj.name}</span>}
           </div>
         );
       })}
