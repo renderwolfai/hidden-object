@@ -5,6 +5,7 @@ export const zeitgeist2025Game: Game = {
   title: '2025 Zeitgeist',
   description: `Find 2025's most viral moments in this image before the timer runs out!`,
   backgroundPath: '/static/2025-zeitgeist/zeitgiest2025_street_image_final.png',
+  bannerPath: 'https://www.hidden.renderwolf.ai/static/2025-zeitgeist/zeitgiest2025_master_image_blur.png',
   difficulty: 'medium',
   timeLimit: 25,
   shareText: `Can you find 2025's most viral moments in this hidden object game by @renderwolfai?`,

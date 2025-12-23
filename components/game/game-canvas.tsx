@@ -3,13 +3,14 @@
 import { memo, useRef } from 'react';
 import { Game } from '@/types/game';
 import { useGameCanvas } from '@/hooks/use-game-canvas';
-import { ClickResult } from '@/types/canvas';
+import { ClickResult, CanvasSize } from '@/types/canvas';
 import { cn } from '@/lib/utils';
 
 interface GameCanvasProps {
   game: Game;
   foundObjects: Set<string>;
   onObjectFound: (result: ClickResult) => void;
+  canvasSize: CanvasSize;
   className?: string;
 }
 
@@ -17,10 +18,11 @@ function GameCanvasComponent({
   game, 
   foundObjects, 
   onObjectFound,
+  canvasSize,
   className 
 }: GameCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { canvasSize, handleClick } = useGameCanvas(canvasRef, game, foundObjects);
+  const { handleClick } = useGameCanvas(canvasRef, game, foundObjects, canvasSize);
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const result = handleClick(e);

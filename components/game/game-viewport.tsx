@@ -6,6 +6,7 @@ import { GameCanvas } from './game-canvas';
 import { FoundObjectAnimation } from './found-object-animation';
 import { ClickResult } from '@/types/canvas';
 import { Position } from '@/types/animation';
+import { useCanvasSize } from '@/hooks/canvas/use-canvas-size';
 
 interface GameViewportProps {
   game: Game;
@@ -22,6 +23,7 @@ interface AnimationState {
 
 function GameViewportComponent({ game, foundObjects, onObjectFound }: GameViewportProps) {
   const [animation, setAnimation] = useState<AnimationState | null>(null);
+  const canvasSize = useCanvasSize(game);
 
   const handleObjectClick = (result: ClickResult) => {
     const object = game.objects.find(obj => obj.id === result.id);
@@ -63,12 +65,17 @@ function GameViewportComponent({ game, foundObjects, onObjectFound }: GameViewpo
             className="game-layer"
             loading="eager"
             decoding="sync"
+            style={{
+              width: `${canvasSize.width * canvasSize.scale}px`,
+              height: `${canvasSize.height * canvasSize.scale}px`
+            }}
           />
           <GameCanvas 
             game={game} 
             foundObjects={foundObjects}
             onObjectFound={handleObjectClick}
             className="game-layer"
+            canvasSize={canvasSize}
           />
           {animation && (
             <FoundObjectAnimation

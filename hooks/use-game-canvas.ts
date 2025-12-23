@@ -2,7 +2,7 @@
 
 import { useEffect, RefObject } from 'react';
 import { Game } from '@/types/game';
-import { useCanvasSize } from './canvas/use-canvas-size';
+import { CanvasSize } from '@/types/canvas';
 import { useMaskLoader } from './canvas/use-mask-loader';
 import { useOverlayRenderer } from './canvas/use-overlay-renderer';
 import { useClickDetector } from './canvas/use-click-detector';
@@ -10,9 +10,10 @@ import { useClickDetector } from './canvas/use-click-detector';
 export function useGameCanvas(
   canvasRef: RefObject<HTMLCanvasElement>,
   game: Game,
-  foundObjects: Set<string>
+  foundObjects: Set<string>,
+  canvasSize: CanvasSize
 ) {
-  const { width, height, scale } = useCanvasSize(game);
+  const { width, height, scale } = canvasSize;
   const masks = useMaskLoader(game);
   const renderOverlay = useOverlayRenderer({ width, height, scale });
   const detectClick = useClickDetector(game, { scale, masks, foundObjects });
@@ -27,7 +28,6 @@ export function useGameCanvas(
   }, [canvasRef, masks, foundObjects, renderOverlay, width, height]);
 
   return {
-    canvasSize: { width, height, scale },
     handleClick: detectClick,
   };
 }
