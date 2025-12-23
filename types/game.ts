@@ -9,6 +9,7 @@ export interface Game {
   title: string;
   description: string;
   backgroundPath: string;
+  bannerPath?: string;
   difficulty: 'easy' | 'medium' | 'hard';
   timeLimit: number;
   objects: GameObject[];
