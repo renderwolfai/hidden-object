@@ -4,7 +4,7 @@ export const zeitgeist2025Game: Game = {
   id: '2025-zeitgeist',
   title: '2025 Zeitgeist',
   description: `Find 2025's most viral moments in this image before the timer runs out!`,
-  backgroundPath: '/static/2025-zeitgeist/zeitgiest2025_master_image_final.png',
+  backgroundPath: '/static/2025-zeitgeist/zeitgiest2025_street_image_final.png',
   difficulty: 'medium',
   timeLimit: 25,
   shareText: `Can you find 2025's most viral moments in this hidden object game by @renderwolfai?`,
@@ -17,7 +17,7 @@ export const zeitgeist2025Game: Game = {
      {
        id: 'object-2',
        name: 'Katy Perry in Space',
-       maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_katyperry_transparent.png'
+       maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_katyperrysuit_transparent.png'
      },
      {
        id: 'object-3',
