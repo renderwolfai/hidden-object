@@ -26,7 +26,15 @@ export function generateMetadata({ params }: GamePageProps): Metadata {
     openGraph: {
       title: `${game.title} - Hidden Object Game`,
       description: game.description,
-      images: [bannerImage],
+      type: 'website',
+      images: [
+        {
+          url: bannerImage,
+          width: 1200,
+          height: 630,
+          alt: game.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
