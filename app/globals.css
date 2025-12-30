@@ -257,3 +257,30 @@
     box-shadow: 0 0 16px 4px rgba(34, 211, 238, 0.5);
   }
 }
+
+/* Hint message for original panel */
+.spot-diff-hint {
+  @apply absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg;
+  @apply bg-black/80 text-white text-sm font-medium;
+  @apply backdrop-blur-sm shadow-lg;
+  animation: hint-fade 2.5s ease-in-out forwards;
+}
+
+@keyframes hint-fade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}

@@ -54,7 +54,13 @@ function useSpotDiffCanvasSize(game: Game): CanvasSize {
 
 function SpotDiffViewportComponent({ game, foundObjects, onObjectFound }: SpotDiffViewportProps) {
   const [animation, setAnimation] = useState<AnimationState | null>(null);
+  const [showHint, setShowHint] = useState(false);
   const canvasSize = useSpotDiffCanvasSize(game);
+
+  const handleOriginalClick = () => {
+    setShowHint(true);
+    setTimeout(() => setShowHint(false), 2500);
+  };
 
   const handleObjectClick = (result: ClickResult) => {
     const object = game.objects.find(obj => obj.id === result.id);
@@ -93,7 +99,7 @@ function SpotDiffViewportComponent({ game, foundObjects, onObjectFound }: SpotDi
     <div className="game-content">
       <div className="spot-diff-container">
         {/* Original Image Panel (static, non-interactive) */}
-        <div className="spot-diff-panel">
+        <div className="spot-diff-panel" onClick={handleOriginalClick}>
           <div className="spot-diff-label">Original</div>
           <div className="spot-diff-image-container">
             <img
@@ -104,6 +110,11 @@ function SpotDiffViewportComponent({ game, foundObjects, onObjectFound }: SpotDi
               decoding="sync"
               style={imageStyle}
             />
+            {showHint && (
+              <div className="spot-diff-hint">
+                Use the other image to spot the differences
+              </div>
+            )}
           </div>
         </div>
 
