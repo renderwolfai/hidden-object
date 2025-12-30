@@ -4,10 +4,12 @@ export const zeitgeistGame: Game = {
   id: 'zeitgeist-2024',
   title: '2024 Zeitgeist',
   description: `Find 2024's most viral moments in this image before the timer runs out!`,
+  type: 'hidden-object',
   backgroundPath: '/static/2024-zeitgeist/final-image-all-2024.png',
   difficulty: 'medium',
   timeLimit: 30,
   shareText: `Can you find 2024's most viral moments in this hidden object game by @renderwolfai? https://t.co/rXhGbfrODf`,
+  showInLobby: true, // Show this game in the lobby
   objects: [
     {
       id: 'stanley-cup',

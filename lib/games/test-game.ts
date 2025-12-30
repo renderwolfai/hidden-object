@@ -4,9 +4,11 @@ export const testGame: Game = {
   id: 'test-game',
   title: 'Magical Room',
   description: 'Find magical objects hidden in this mysterious room',
+  type: 'hidden-object',
   backgroundPath: '/static/test-game/background.jpg',
   difficulty: 'medium',
   timeLimit: 300, // 5 minutes
+  showInLobby: false, // Hide test game from lobby
   objects: [
     {
       id: 'wizard',

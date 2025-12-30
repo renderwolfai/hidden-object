@@ -10,8 +10,8 @@ const josefinSans = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Hidden Object Game - RenderWolf',
-  description: 'A hidden object game powered by RenderWolf',
+  title: 'Visual Puzzle Games - RenderWolf',
+  description: 'Visual Puzzle Games made using Renderwolf AI',
   icons: {
     icon: '/icon.png',
     shortcut: '/favicon.ico',

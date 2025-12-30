@@ -1,20 +1,25 @@
 'use client';
 
 import { ImageBounds } from '@/types/canvas';
+import { GameType } from '@/types/game';
 import { DEBUG } from '@/lib/debug';
 import { getImageBounds } from './bounds';
+
+const FOUND_COLOR = 'rgba(0, 255, 0, 0.5)'; // Green for all game types
 
 export class CanvasRenderer {
   private ctx: CanvasRenderingContext2D;
   private width: number;
   private height: number;
   private scale: number;
+  private gameType: GameType;
 
-  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, scale = 1) {
+  constructor(ctx: CanvasRenderingContext2D, width: number, height: number, scale = 1, gameType: GameType = 'hidden-object') {
     this.ctx = ctx;
     this.width = width;
     this.height = height;
     this.scale = scale;
+    this.gameType = gameType;
   }
 
   clear() {
@@ -35,7 +40,7 @@ export class CanvasRenderer {
 
     // Fill with appropriate color
     this.ctx.fillStyle = isFound ? 
-      'rgba(0, 255, 0, 0.5)' : // Green for found
+      FOUND_COLOR :
       DEBUG ? 'rgba(255, 0, 0, 0.3)' : 'transparent'; // Red for debug, transparent for normal
     this.ctx.fill(path);
 

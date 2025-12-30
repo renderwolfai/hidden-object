@@ -68,10 +68,49 @@
 
 .game-preview img {
   @apply w-full h-full object-cover transition-transform duration-300;
+  filter: blur(1.5px);
 }
 
 .game-card:hover .game-preview img {
   @apply scale-105;
+}
+
+.game-type-badge {
+  @apply absolute top-2 left-2 flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-bold;
+  @apply backdrop-blur-md ring-1 ring-black/20;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-type-badge-hidden {
+  @apply bg-amber-400 text-amber-950;
+}
+
+.game-type-badge-spotdiff {
+  @apply bg-cyan-400 text-cyan-950;
+}
+
+/* Spot the Difference Preview (side-by-side in lobby) */
+.spot-diff-preview {
+  @apply absolute inset-0 flex;
+}
+
+.spot-diff-preview-panel {
+  @apply relative flex-1 overflow-hidden;
+  @apply border-4 border-white/50;
+}
+
+.spot-diff-preview-panel img {
+  @apply w-full h-full object-cover transition-transform duration-300;
+  filter: blur(1px);
+}
+
+.game-card:hover .spot-diff-preview-panel img {
+  @apply scale-105;
+}
+
+.spot-diff-preview-label {
+  @apply absolute bottom-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-semibold;
+  @apply bg-black/70 text-white backdrop-blur-sm;
 }
 
 .game-info {
@@ -167,4 +206,81 @@
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
+}
+
+/* Spot the Difference Viewport */
+.spot-diff-container {
+  @apply absolute inset-0 flex flex-col md:flex-row gap-2 p-2;
+}
+
+.spot-diff-panel {
+  @apply flex-1 relative flex flex-col min-h-0 rounded-lg overflow-hidden;
+  background: linear-gradient(to bottom, hsl(240 10% 6%), hsl(240 10% 4%));
+}
+
+.spot-diff-label {
+  @apply flex-none px-4 py-2 text-sm font-medium text-center;
+  @apply bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  @apply border-b border-white/10;
+}
+
+.spot-diff-image-container {
+  @apply flex-1 relative flex items-center justify-center overflow-hidden;
+}
+
+.spot-diff-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.spot-diff-canvas {
+  @apply absolute;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Interactive panel glow effect */
+.spot-diff-panel:last-child {
+  @apply ring-2 ring-cyan-400/60;
+  animation: panel-glow 2s ease-in-out infinite;
+}
+
+@keyframes panel-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px rgba(34, 211, 238, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(34, 211, 238, 0.5);
+  }
+}
+
+/* Hint message for original panel */
+.spot-diff-hint {
+  @apply absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg;
+  @apply bg-black/80 text-white text-sm font-medium;
+  @apply backdrop-blur-sm shadow-lg;
+  animation: hint-fade 2.5s ease-in-out forwards;
+}
+
+@keyframes hint-fade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
