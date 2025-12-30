@@ -77,16 +77,29 @@ interface GameLobbyProps {
 }
 
 export default function GameLobby({ games }: GameLobbyProps) {
+  // Filter to only show games where showInLobby is not explicitly false
+  const visibleGames = games.filter(game => game.showInLobby !== false);
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-3">Visual Puzzle Games</h1>
-        <p className="text-lg text-muted-foreground">
-          Find hidden objects or spot the differences in beautiful scenes
+        <h1 className="text-4xl font-bold mb-1">Visual Puzzle Games</h1>
+        <p className="text-sm text-muted-foreground mb-3">
+          made with{' '}
+          <a 
+            href="https://app.renderwolf.ai" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            renderwolf.ai
+          </a>
         </p>
+        <p className="text-lg text-muted-foreground">
+          The art and code for these puzzle games were generated using Renderwolf AI. Find hidden objects or spot the differences in puzzling settings!        </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {games.map((game) => (
+        {visibleGames.map((game) => (
           <GameCard 
             key={game.id} 
             game={game}

@@ -18,4 +18,5 @@ export interface Game {
   timeLimit: number;
   objects: GameObject[];
   shareText?: string;
+  showInLobby?: boolean; // Defaults to true if not specified
 }

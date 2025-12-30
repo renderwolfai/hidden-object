@@ -9,6 +9,7 @@ export const zeitgeistGame: Game = {
   difficulty: 'medium',
   timeLimit: 30,
   shareText: `Can you find 2024's most viral moments in this hidden object game by @renderwolfai? https://t.co/rXhGbfrODf`,
+  showInLobby: true, // Show this game in the lobby
   objects: [
     {
       id: 'stanley-cup',

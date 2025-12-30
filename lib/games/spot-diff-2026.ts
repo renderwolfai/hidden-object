@@ -17,6 +17,7 @@ export const spotDiffExampleGame: Game = {
   backgroundPath: '/static/spot-the-diff-2026/Img_2026_final.png', // The modified image (replace with actual different image)
   difficulty: 'easy',
   timeLimit: 30, // half a minute
+  showInLobby: true, // Show this game in the lobby
   shareText: 'I found all the differences in this spot-the-difference game by @renderwolfai!',
   objects: [
     // Each "object" represents a difference to find

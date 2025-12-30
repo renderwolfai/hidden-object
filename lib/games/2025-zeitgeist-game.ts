@@ -10,6 +10,7 @@ export const zeitgeist2025Game: Game = {
   difficulty: 'medium',
   timeLimit: 25,
   shareText: `Can you find 2025's most viral moments in this hidden object game by @renderwolfai?`,
+  showInLobby: true, // Show this game in the lobby
   objects: [
     {
        id: 'object-1',

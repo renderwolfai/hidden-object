@@ -8,6 +8,7 @@ export const testGame: Game = {
   backgroundPath: '/static/test-game/background.jpg',
   difficulty: 'medium',
   timeLimit: 300, // 5 minutes
+  showInLobby: false, // Hide test game from lobby
   objects: [
     {
       id: 'wizard',
