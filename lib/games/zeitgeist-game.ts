@@ -4,6 +4,7 @@ export const zeitgeistGame: Game = {
   id: 'zeitgeist-2024',
   title: '2024 Zeitgeist',
   description: `Find 2024's most viral moments in this image before the timer runs out!`,
+  type: 'hidden-object',
   backgroundPath: '/static/2024-zeitgeist/final-image-all-2024.png',
   difficulty: 'medium',
   timeLimit: 30,

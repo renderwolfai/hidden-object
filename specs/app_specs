@@ -1,5 +1,0 @@
-I want to add a new type of game to this project, where the user tries to find the differences between two very similar looking images. Details:
-There is a new label that we show for all games on the home page that identifies the type of game. Let us support two types for now - hidden object, spot the differences
-When a user clicks a 'spot the difference game' here is how the game works
-- There are two image panels. The original image, and the game play image where the user needs to spot the differences.
-- 

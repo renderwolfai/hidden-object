@@ -4,6 +4,7 @@ import { Game } from '@/types/game';
 import { GameUI } from './game-ui';
 import { GameComplete } from './game-complete';
 import { GameViewport } from './game-viewport';
+import { SpotDiffViewport } from './spot-diff-viewport';
 import { GameStartModal } from './game-start-modal';
 import { useGameState } from '@/hooks/game';
 import { useGameStart } from '@/hooks/game/use-game-start';
@@ -35,6 +36,8 @@ export default function GameClient({ game }: GameClientProps) {
     startTimer();
   };
 
+  const ViewportComponent = game.type === 'spot-the-difference' ? SpotDiffViewport : GameViewport;
+
   return (
     <>
       <GameStartModal
@@ -53,7 +56,7 @@ export default function GameClient({ game }: GameClientProps) {
           timeRemaining={timeRemaining}
           onQuit={() => window.location.href = '/'}
         />
-        <GameViewport
+        <ViewportComponent
           game={game}
           foundObjects={foundObjects}
           onObjectFound={handleObjectClick}
@@ -65,7 +68,7 @@ export default function GameClient({ game }: GameClientProps) {
           foundCount={foundObjects.size}
           totalCount={game.objects.length}
           timeRemaining={timeRemaining}
-          gameShareText={game.shareText || `I just beat ${game.title} on Hidden Object by @renderwolfai! Can you?`}
+          gameShareText={game.shareText || `I just beat ${game.title} by @renderwolfai! Can you?`}
           gameId={game.id}
           gameTitle={game.title}
         />

@@ -1,0 +1,8 @@
+Spot-the-Difference Game Details:
+There is a new label that we show for all games on the home page that identifies the type of game. Let us support two types for now - hidden object, spot the differences
+I can configure all the metadata for the new type of game just like I can for the hidden object game.
+When a user clicks a 'spot the difference game' here is how the game works
+- A timer starts, just like for the hidden object game
+- There are two image panels. The original image, and the game play image where the user needs to spot the differences.
+- The original image is just static and can't be interacted with. The new image can be interacted with and will have masks, just like we have in the hidden object game
+- Correctly spotting the differences works just like in the hidden object game. The names and images of the masked objects show up at the top. 
