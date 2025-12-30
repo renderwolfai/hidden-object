@@ -211,6 +211,8 @@
 /* Spot the Difference Viewport */
 .spot-diff-container {
   @apply absolute inset-0 flex flex-col md:flex-row gap-2 p-2;
+  @apply lg:p-6 xl:p-10;
+  @apply lg:max-w-6xl xl:max-w-7xl lg:mx-auto lg:left-0 lg:right-0;
 }
 
 .spot-diff-panel {
