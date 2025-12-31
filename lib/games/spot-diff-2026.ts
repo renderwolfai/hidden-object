@@ -14,6 +14,7 @@ export const spotDiffExampleGame: Game = {
   description: 'How different is 2026 going to be from 2025? Find the differences before the timer runs out!',
   type: 'spot-the-difference',
   originalImagePath: '/static/spot-the-diff-2026/Img_2025.png', // The original image
+  bannerPath: 'https://www.hidden.renderwolf.ai/static/spot-the-diff-2026/Img_2026_final.png',
   backgroundPath: '/static/spot-the-diff-2026/Img_2026_final.png', // The modified image (replace with actual different image)
   difficulty: 'medium',
   timeLimit: 40, // half a minute
