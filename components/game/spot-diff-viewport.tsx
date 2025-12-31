@@ -4,6 +4,7 @@ import { memo, useState, useEffect } from 'react';
 import { Game } from '@/types/game';
 import { GameCanvas } from './game-canvas';
 import { FoundObjectAnimation } from './found-object-animation';
+import { HorizontalObjectIndicators } from './game-ui/horizontal-object-indicators';
 import { ClickResult, CanvasSize } from '@/types/canvas';
 import { Position } from '@/types/animation';
 import { loadImage } from '@/lib';
@@ -102,7 +103,7 @@ function SpotDiffViewportComponent({ game, foundObjects, onObjectFound }: SpotDi
       <div className="spot-diff-container">
         {/* Original Image Panel (static, non-interactive) */}
         <div className="spot-diff-panel" onClick={handleOriginalClick}>
-          <div className="spot-diff-label">Original</div>
+          <div className="spot-diff-label hidden md:block">Original</div>
           <div className="spot-diff-image-container">
             <img
               src={game.originalImagePath || game.backgroundPath}
@@ -120,9 +121,16 @@ function SpotDiffViewportComponent({ game, foundObjects, onObjectFound }: SpotDi
           </div>
         </div>
 
+        {/* Horizontal object indicators between panels - mobile only */}
+        <HorizontalObjectIndicators 
+          objects={game.objects} 
+          foundObjects={foundObjects}
+          className="spot-diff-between-indicators"
+        />
+
         {/* Differences Panel (interactive) */}
         <div className="spot-diff-panel">
-          <div className="spot-diff-label">Find the Differences</div>
+          <div className="spot-diff-label hidden md:block">Find the Differences</div>
           <div className="spot-diff-image-container">
             <img
               src={game.backgroundPath}

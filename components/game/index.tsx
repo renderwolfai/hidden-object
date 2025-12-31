@@ -55,6 +55,7 @@ export default function GameClient({ game }: GameClientProps) {
           foundObjects={foundObjects}
           timeRemaining={timeRemaining}
           onQuit={() => window.location.href = '/'}
+          hideObjectListOnMobile={game.type === 'spot-the-difference'}
         />
         <ViewportComponent
           game={game}

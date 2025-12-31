@@ -295,3 +295,9 @@
     transform: translateX(-50%) translateY(-10px);
   }
 }
+
+/* Horizontal object indicators between panels - mobile only */
+.spot-diff-between-indicators {
+  @apply flex-none py-1;
+  @apply md:hidden;
+}

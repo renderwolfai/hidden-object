@@ -13,14 +13,16 @@ interface GameUIProps {
   foundObjects: Set<string>;
   timeRemaining: number;
   onQuit: () => void;
+  hideObjectListOnMobile?: boolean;
 }
 
-function GameUIComponent({ game, foundObjects, timeRemaining, onQuit }: GameUIProps) {
+function GameUIComponent({ game, foundObjects, timeRemaining, onQuit, hideObjectListOnMobile = false }: GameUIProps) {
   const progress = (foundObjects.size / game.objects.length) * 100;
+  const isSpotDiff = game.type === 'spot-the-difference';
 
   return (
-    <div className="bg-background/95 backdrop-blur-md border-b border-border/50 p-4">
-      <div className="container mx-auto flex flex-col gap-4">
+    <div className={`bg-background/95 backdrop-blur-md border-b border-border/50 ${isSpotDiff ? 'p-2 md:p-4' : 'p-4'}`}>
+      <div className={`container mx-auto flex flex-col ${isSpotDiff ? 'gap-2 md:gap-4' : 'gap-4'}`}>
         <div className="flex items-center justify-between gap-3">
           <Link 
             href="/" 
@@ -36,7 +38,10 @@ function GameUIComponent({ game, foundObjects, timeRemaining, onQuit }: GameUIPr
             {foundObjects.size}/{game.objects.length}
           </div>
         </div>
-        <ObjectList objects={game.objects} foundObjects={foundObjects} />
+        {/* Hide object list on mobile for spot-diff, show in gutters instead */}
+        <div className={hideObjectListOnMobile ? 'hidden md:block' : ''}>
+          <ObjectList objects={game.objects} foundObjects={foundObjects} />
+        </div>
       </div>
     </div>
   );
