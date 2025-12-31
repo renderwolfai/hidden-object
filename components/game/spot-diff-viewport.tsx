@@ -27,12 +27,14 @@ function useSpotDiffCanvasSize(game: Game): CanvasSize {
   useEffect(() => {
     const updateSize = async () => {
       const backgroundImg = await loadImage(game.backgroundPath);
-      const container = document.querySelector('.spot-diff-panel');
+      // Use the image container (not the panel) for accurate size calculation
+      // The panel includes the label which takes up space
+      const container = document.querySelector('.spot-diff-panel:last-child .spot-diff-image-container');
       if (!container) return;
 
       const containerRect = container.getBoundingClientRect();
       
-      // Calculate scale to fit the image in a single panel
+      // Calculate scale to fit the image in the actual image container
       const scaleX = containerRect.width / backgroundImg.width;
       const scaleY = containerRect.height / backgroundImg.height;
       const scale = Math.min(scaleX, scaleY);
