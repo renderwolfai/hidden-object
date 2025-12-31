@@ -9,7 +9,7 @@ import { Game } from '@/types/game';
  * 4. Create mask images for each difference (same as hidden object masks)
  */
 export const spotDiffExampleGame: Game = {
-  id: 'spot-diff-example',
+  id: 'spot-diff-2026',
   title: 'Spot the Difference 2026',
   description: 'How different is 2026 going to be from 2025? Find the differences before the timer runs out!',
   type: 'spot-the-difference',
