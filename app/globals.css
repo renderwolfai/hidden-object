@@ -218,6 +218,7 @@
 .spot-diff-panel {
   @apply flex-1 relative flex flex-col min-h-0 rounded-lg overflow-hidden;
   background: linear-gradient(to bottom, hsl(240 10% 6%), hsl(240 10% 4%));
+  touch-action: manipulation;
 }
 
 .spot-diff-label {
@@ -243,6 +244,8 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 /* Interactive panel glow effect */
