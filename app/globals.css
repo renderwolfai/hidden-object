@@ -301,3 +301,19 @@
   @apply flex-none py-1;
   @apply md:hidden;
 }
+
+/* Tooltip fade-in animation */
+.animate-fade-in {
+  animation: fade-in 0.15s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
