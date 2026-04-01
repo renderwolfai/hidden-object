@@ -6,7 +6,7 @@ export const artemisIIGame: Game = {
   description: `As humans head to the moon once again with Artemis II, find all the mission-related hidden objects in this image before the timer runs out!`,
   type: 'hidden-object',
   backgroundPath: '/static/artemis-ii-hidden-object/background_final.png',
-  bannerPath: 'https://www.hidden.renderwolf.ai/static/artemis-ii-hidden-object/banner_final.png',
+  bannerPath: 'https://www.hidden.renderwolf.ai/static/artemis-ii-hidden-object/background_final.png',
   difficulty: 'medium',
   timeLimit: 30,
   shareText: `As humans head to the moon once again with Artemis II, can you find all the mission-related hidden objects in this game by @renderwolfai?`,
