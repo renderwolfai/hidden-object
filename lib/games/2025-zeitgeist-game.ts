@@ -11,30 +11,37 @@ export const zeitgeist2025Game: Game = {
   timeLimit: 25,
   shareText: `Can you find 2025's most viral moments in this hidden object game by @renderwolfai?`,
   showInLobby: true, // Show this game in the lobby
+  showObjectDescriptions: true,
+  showUnfoundObjects: true,
   objects: [
     {
        id: 'object-1',
        name: 'Gorilla vs 100 men',
+       description: 'Gorilla vs 100 men',
        maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_gorilla_transparent.png'
      },
      {
        id: 'object-2',
        name: 'Katy Perry in Space',
+       description: 'Katy Perry in Space',
        maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_katyperrysuit_transparent.png'
      },
      {
        id: 'object-3',
        name: 'KPop Demon Hunters',
+       description: 'KPop Demon Hunters',
        maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_kpop_transparent.png'
      },
      {
        id: 'object-4',
        name: 'Labubu',
+       description: 'Labubu',
        maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_labubu_transparent.png'
      },
      {
        id: 'object-5',
        name: 'Louvre Heist',
+       description: 'Louvre Heist',
        maskPath: '/static/2025-zeitgeist/zeitgiest2025_street_louvre_transparent.png'
      },
   ]
