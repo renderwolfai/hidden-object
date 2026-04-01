@@ -8,9 +8,10 @@ interface ObjectPreviewProps {
   maskPath: string;
   name: string;
   isFound: boolean;
+  className?: string;
 }
 
-function ObjectPreviewComponent({ maskPath, name, isFound }: ObjectPreviewProps) {
+function ObjectPreviewComponent({ maskPath, name, isFound, className }: ObjectPreviewProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -51,7 +52,8 @@ function ObjectPreviewComponent({ maskPath, name, isFound }: ObjectPreviewProps)
       ref={canvasRef}
       className={cn(
         "w-6 h-6 object-contain transition-opacity duration-200",
-        isFound ? "opacity-50" : "opacity-100"
+        isFound ? "opacity-50" : "opacity-100",
+        className
       )}
       aria-label={`Preview of ${name}`}
     />

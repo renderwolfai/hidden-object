@@ -18,7 +18,9 @@ export const spotDiffExampleGame: Game = {
   backgroundPath: '/static/spot-the-diff-2026/Img_2026_final.png', // The modified image (replace with actual different image)
   difficulty: 'medium',
   timeLimit: 40, // half a minute
-  showInLobby: true, // Show this game in the lobby
+  showInLobby: true, // Show this game in the lobby,
+  showObjectDescriptions: true,
+  showUnfoundObjects: true,
   shareText: 'I found all the differences in this spot-the-difference game by @renderwolfai!',
   objects: [
     // Each "object" represents a difference to find
@@ -26,31 +28,37 @@ export const spotDiffExampleGame: Game = {
     {
       id: 'diff-balloons',
       name: 'Balloons',
+      description: 'A balloon with a red stripe',
       maskPath: '/static/spot-the-diff-2026/masks/balloons.png'
     },
     {
       id: 'diff-blue-shirt',
       name: 'Blue Shirt',
+      description: 'A blue shirt with a white stripe',
       maskPath: '/static/spot-the-diff-2026/masks/blueshirt.png'
     },
     {
       id: 'diff-kratos',
       name: 'Kratos smiling',
+      description: 'Kratos smiling',
       maskPath: '/static/spot-the-diff-2026/masks/kratos.png'
     },
     {
       id: 'diff-dj-shades',
       name: 'Shades on DJ',
+      description: 'Shades on DJ',
       maskPath: '/static/spot-the-diff-2026/masks/shades.png'
     },
     {
       id: 'diff-mario-trophy',
       name: 'Trophy with Mario',
+      description: 'Trophy with Mario',
       maskPath: '/static/spot-the-diff-2026/masks/trophy.png'
     },
     {
       id: 'diff-year-2026',
       name: 'Happy New Year 2026!',
+      description: 'Happy New Year 2026!',
       maskPath: '/static/spot-the-diff-2026/masks/year.png'
     }
   ]

@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import { trackGameComplete } from "@/lib/analytics/events/game";
 import { trackLogoClick } from "@/lib/analytics/events/navigation";
+import { GameObject } from "@/types/game";
+import { ObjectPreview } from "./game-ui/object-preview";
 
 interface GameCompleteProps {
   open: boolean;
@@ -18,6 +20,8 @@ interface GameCompleteProps {
   gameId: string;
   gameTitle: string;
   gameShareText: string;
+  objects?: GameObject[];
+  foundObjects?: Set<string>;
 }
 
 function GameCompleteComponent({
@@ -30,6 +34,8 @@ function GameCompleteComponent({
   gameId,
   gameTitle,
   gameShareText,
+  objects,
+  foundObjects,
 }: GameCompleteProps) {
   const isWin = foundCount === totalCount;
   const score = Math.round((foundCount / totalCount) * 100);
@@ -54,8 +60,8 @@ function GameCompleteComponent({
   };
 
   return (
-    <Dialog open={open} onOpenChange={isWin ? onClose : undefined}>
-      <DialogContent className="sm:max-w-md">
+    <Dialog open={open} onOpenChange={isWin ? onClose : undefined} modal={false}>
+      <DialogContent overlay={false} className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-[min(420px,calc(100vw-2rem))] max-h-[85vh] overflow-y-auto scrollbar-hide sm:max-w-md shadow-2xl">
         <DialogTitle className="text-2xl text-center">
           {isWin ? "🎉 Congratulations!" : "⏰ Time's Up!"}
         </DialogTitle>
@@ -70,15 +76,43 @@ function GameCompleteComponent({
             !
           </p>
 
+          {objects && foundObjects && foundObjects.size > 0 && (
+            <div className="space-y-2">
+              {objects
+                .filter((obj) => foundObjects.has(obj.id))
+                .map((obj) => (
+                  <div
+                    key={obj.id}
+                    className="flex items-center gap-3 p-2 rounded-lg bg-secondary/50 text-left"
+                  >
+                    <div className="relative w-10 h-10 shrink-0 flex items-center justify-center rounded-md bg-secondary overflow-hidden">
+                      <ObjectPreview
+                        maskPath={obj.maskPath}
+                        name={obj.name}
+                        isFound={true}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium truncate">{obj.name}</p>
+                      {obj.description && (
+                        <p className="text-xs text-muted-foreground line-clamp-2">{obj.description}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+            </div>
+          )}
+
           {isWin ? (
-            <SocialShare 
-              shareText={gameShareText} 
+            <SocialShare
+              shareText={gameShareText}
               gameId={gameId}
               gameTitle={gameTitle}
             />
           ) : (
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="w-full"
               onClick={onRetry}
             >
@@ -87,7 +121,7 @@ function GameCompleteComponent({
             </Button>
           )}
 
-          <div 
+          <div
             className="inline-block hover:opacity-60 transition-opacity pt-4 border-t cursor-pointer"
             onClick={handleLogoClick}
           >

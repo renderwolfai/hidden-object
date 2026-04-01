@@ -72,6 +72,8 @@ export default function GameClient({ game }: GameClientProps) {
           gameShareText={game.shareText || `I just beat ${game.title} by @renderwolfai! Can you?`}
           gameId={game.id}
           gameTitle={game.title}
+          objects={game.showFoundObjectsOnComplete ? game.objects : undefined}
+          foundObjects={game.showFoundObjectsOnComplete ? foundObjects : undefined}
         />
       </div>
     </>

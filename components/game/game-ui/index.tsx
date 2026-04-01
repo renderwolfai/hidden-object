@@ -40,7 +40,7 @@ function GameUIComponent({ game, foundObjects, timeRemaining, onQuit, hideObject
         </div>
         {/* Hide object list on mobile for spot-diff, show in gutters instead */}
         <div className={hideObjectListOnMobile ? 'hidden md:block' : ''}>
-          <ObjectList objects={game.objects} foundObjects={foundObjects} />
+          <ObjectList objects={game.objects} foundObjects={foundObjects} showDescriptions={game.showObjectDescriptions} showUnfoundObjects={game.showUnfoundObjects} />
         </div>
       </div>
     </div>
