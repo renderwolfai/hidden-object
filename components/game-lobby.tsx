@@ -2,7 +2,7 @@
 
 import { Game, GameType } from '@/types/game';
 import { memo } from 'react';
-import { Clock, Gauge, Search, GitCompare } from 'lucide-react';
+import { Clock, Gauge, Search, GitCompare, Shapes } from 'lucide-react';
 import Link from 'next/link';
 
 interface GameCardProps {
@@ -12,6 +12,7 @@ interface GameCardProps {
 const gameTypeLabels: Record<GameType, { label: string; icon: typeof Search; className: string }> = {
   'hidden-object': { label: 'Hidden Object', icon: Search, className: 'game-type-badge-hidden' },
   'spot-the-difference': { label: 'Spot the Difference', icon: GitCompare, className: 'game-type-badge-spotdiff' },
+  'hidden-outline': { label: 'Hidden Outline', icon: Shapes, className: 'game-type-badge-outline' },
 };
 
 const GameCard = memo(function GameCard({ game }: GameCardProps) {

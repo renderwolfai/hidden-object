@@ -5,6 +5,7 @@ import { GameUI } from './game-ui';
 import { GameComplete } from './game-complete';
 import { GameViewport } from './game-viewport';
 import { SpotDiffViewport } from './spot-diff-viewport';
+import { HiddenOutlineViewport } from './hidden-outline-viewport';
 import { GameStartModal } from './game-start-modal';
 import { useGameState } from '@/hooks/game';
 import { useGameStart } from '@/hooks/game/use-game-start';
@@ -36,7 +37,9 @@ export default function GameClient({ game }: GameClientProps) {
     startTimer();
   };
 
-  const ViewportComponent = game.type === 'spot-the-difference' ? SpotDiffViewport : GameViewport;
+  const ViewportComponent = game.type === 'spot-the-difference' ? SpotDiffViewport
+    : game.type === 'hidden-outline' ? HiddenOutlineViewport
+    : GameViewport;
 
   return (
     <>
