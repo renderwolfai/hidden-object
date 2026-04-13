@@ -99,6 +99,10 @@
   @apply bg-cyan-400 text-cyan-950;
 }
 
+.game-type-badge-outline {
+  @apply bg-violet-400 text-violet-950;
+}
+
 /* Spot the Difference Preview (side-by-side in lobby) */
 .spot-diff-preview {
   @apply absolute inset-0 flex;

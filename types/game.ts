@@ -1,11 +1,18 @@
+export interface FoundOverlay {
+  imagePath: string;
+  x: number;
+  y: number;
+}
+
 export interface GameObject {
   id: string;
   name: string;
   description?: string;
   maskPath: string;
+  foundOverlays?: FoundOverlay[]; // For hidden-outline games: positioned overlay images
 }
 
-export type GameType = 'hidden-object' | 'spot-the-difference';
+export type GameType = 'hidden-object' | 'spot-the-difference' | 'hidden-outline';
 
 export interface Game {
   id: string;
